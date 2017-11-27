@@ -36,4 +36,6 @@ def ask_user(name = ""):
             break
         answer = get_answer(key, answeres)
         print(answer)
-ask_user()
+
+if __name__ == '__main__':
+    ask_user()
