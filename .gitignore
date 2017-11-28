@@ -1,3 +1,4 @@
 .idea/
-/lesson1/key_telegrambot
-lesson1/bot.log
+key_telegrambot
+bot.log
+__pycache__
