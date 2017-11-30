@@ -1,19 +1,22 @@
 
-#Автор: Тютин Руслан
-#Оценки
+# Автор: Тютин Руслан
+# Оценки
 #
-#Создать список с оценками учеников разных классов школы вида [{'school_class': '4a', 'scores': [3,4,4,5,2]}, ...]
-#Посчитать и вывести средний балл по всей школе.
-#Посчитать и вывести средний балл по каждому классу.
+# Создать список с оценками учеников разных классов школы вида [{'school_class': '4a', 'scores': [3,4,4,5,2]}, ...]
+# Посчитать и вывести средний балл по всей школе.
+# Посчитать и вывести средний балл по каждому классу.
 
-print("task 3")
-school_lists = [{'school_class': '4a', 'scores': [3,4,4,5,2]},
-        {'school_class': '5a', 'scores': [3,4,3,5,2]},
-        {'school_class': '6a', 'scores': [3,5,4,5,2]},
-        {'school_class': '7a', 'scores': [3,4,4,2,2]},
-        {'school_class': '8a', 'scores': [3,3,4,5,2]},
-        {'school_class': '9a', 'scores': [3,5,4,5,2]}]
+
+school_lists = [
+        {'school_class': '4a', 'scores': [3, 4, 4, 5, 2]},
+        {'school_class': '5a', 'scores': [3, 4, 3, 5, 2]},
+        {'school_class': '6a', 'scores': [3, 5, 4, 5, 2]},
+        {'school_class': '7a', 'scores': [3, 4, 4, 2, 2]},
+        {'school_class': '8a', 'scores': [3, 3, 4, 5, 2]},
+        {'school_class': '9a', 'scores': [3, 5, 4, 5, 2]}
+]
 middle_lists = []
+
 
 for school_list in school_lists:
     score_list = school_list['scores']

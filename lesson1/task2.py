@@ -19,11 +19,13 @@ def compare_line(first, second):
     else:
         return 'Ошибка валидации строки!'
 
+
 def validate_line(line):
-    '''Эта функция проверяет что line это строка и она не равна None'''
-    if type(line) == 'str' and line != '':
+    """Эта функция проверяет что line это строка и она не равна None"""
+    if isinstance(line, str) and line != '':
         return True
 
     return False
 
-print(compare_line("example", "learn"))
+
+print(compare_line('example', 'asdf'))

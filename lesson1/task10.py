@@ -4,25 +4,29 @@
 #
 # Установите модуль ephem
 # Добавьте в бота команду /planet, которая будет принимать на вход название планеты на английском.
-# При помощи условного оператора if и ephem.constellation научите бота отвечать, в каком созвездии сегодня находится планета.
+# При помощи условного оператора if и ephem.constellation научите бота отвечать,
+# в каком созвездии сегодня находится планета.
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
+from telegram.ext import Updater, CommandHandler
 import logging
 import datetime
 import ephem
+import pickle
 
-KEY = open('key_telegrambot', 'r').read()
+with open('telegrambot_token', 'rb') as f:
+    TOKEN = pickle.load(f)
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log'
                     )
 
+
 def main():
-    updater = Updater(KEY)
+    updater = Updater(TOKEN)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
-    #dp.add_handler(MessageHandler(Filters.text, talk_to_me))
     dp.add_handler(CommandHandler("planet", planet))
     updater.start_polling()
     updater.idle()
@@ -34,11 +38,6 @@ def greet_user(bot, update):
     print(text)
     update.message.reply_text(text)
 
-
-def talk_to_me(bot, update):
-    user_text = update.message.text
-    print(user_text)
-    update.message.reply_text(user_text)
 
 def planet(bot, update):
     name_planet = update.message.text.split()[1]
@@ -56,5 +55,6 @@ def planet(bot, update):
         update.message.reply_text(format_result)
 
     update.message.reply_text('Ты можешь набрать "/planet Venus" или "/planet Mars"')
+
 
 main()

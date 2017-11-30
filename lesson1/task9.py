@@ -5,6 +5,7 @@
 # Переписать функцию ask_user (), добавив обработка exception-ов
 # Добавить перехват ctrl + C и прощание
 
+
 def ask_user():
     while True:
         try:
@@ -12,7 +13,8 @@ def ask_user():
             if ask == 'Хорошо':
                 return
         except KeyboardInterrupt:
-            print("Вы нажали Ctrl + C программа будет завершена, всего доброго")
+            print("Вы нажали Ctrl + C программа будет завершена, всего доброго.")
             break
+
 
 ask_user()

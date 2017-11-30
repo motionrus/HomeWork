@@ -3,10 +3,12 @@
 #
 # Написать функцию ask_user() чтобы с помощью input() спрашивать пользователя “Как дела?”, пока он не ответит “Хорошо”
 
+
 def ask_user():
     while True:
-        ask = input("Как дела?: ")
-        if ask == 'Хорошо':
+        answer = input("Как дела?: ")
+        if answer == 'Хорошо':
             return
+
 
 ask_user()
