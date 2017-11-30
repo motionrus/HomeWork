@@ -2,3 +2,5 @@
 key_telegrambot
 bot.log
 __pycache__
+env/
+export.csv
