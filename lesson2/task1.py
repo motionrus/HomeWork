@@ -1,31 +1,29 @@
-<<<<<<< HEAD
-=======
 
 # Автор Тютин Руслан
-# Задание
+# Остановки
 #
-# Напечатайте в консоль даты: вчера, сегодня, месяц назад
-# Превратите строку "01/01/17 12:10:03.234567" в объект datetime
-
-from datetime import datetime, timedelta
-import locale, calendar
-
-DATEVIEW = '%d %B %y'
-mdays = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+# Считать из csv-файла (с http://data.mos.ru/datasets/752) количество остановок,
+# вывести улицу, на которой больше всего остановок.
+from collections import Counter
+import csv
 
 
-locale.setlocale(locale.LC_ALL, "ru_RU.UTF-8")
-date_now = datetime.now()
-day_delta = timedelta(days=1)
-days_in_mouth = mdays[int(date_now.strftime('%m')) - 1]
-mouth_delta = timedelta(days=days_in_mouth)
-yesterday = date_now - day_delta
-mouth = date_now - mouth_delta
+list_stop_bus = list()
+list_street = list()
+with open('data-398-2017-12-01.csv', 'r', encoding='cp1251') as f:
+    reader = csv.DictReader(f, delimiter = ";")
+    for r in reader:
+        list_stop_bus.append(r['StationName'])
+        list_street.append(r['Street'])
 
-print("Дата вчерашнего дня: {}".format(yesterday.strftime(DATEVIEW)))
-print("Сегодня: {}".format(date_now.strftime(DATEVIEW)))
-print("Месяц назад: {}".format(mouth.strftime(DATEVIEW)))
 
-str_to_obj = datetime.strptime('01/01/17 12:10:03.234567', '%d/%m/%y %H:%M:%S.%f')
+count_bus_stop = len(set(list_stop_bus))
+max_bus_stop = Counter(list_stop_bus).most_common()[0]
+max_count_street = Counter(list_street).most_common()[1]
 
->>>>>>> 03b76d12bd9cd46d23016dc5b323263f20304e8a
+
+print('Количество остановок в г.Москва: {}'.format(count_bus_stop))
+print('На улице: "{}", больше всего остановок: "{}"'.format(max_count_street[0], max_count_street[1]))
+print('')
+print('Не по заданию, на в качестве бонуса.')
+print('Больше всех остановок с названием: "{}". Их количество: "{}"'.format(max_bus_stop[0],max_bus_stop[1]))
