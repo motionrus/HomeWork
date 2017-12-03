@@ -1,31 +1,57 @@
 
 # Автор Тютин Руслан
-# Сравнение строк (https://learn.python.ru/lessons/10_if.html?full#11)
+# Бот-калькулятор
 #
-# Написать функцию, которая принимает на вход две строки.
-# Если строки одинаковые, возвращает 1.
-# Если строки разные и первая длиннее, возвращает 2.
-# Если строки разные и вторая строка 'learn', возвращает 3.
+# Научите бота выполнять основные арифметические действия с числами:
+# сложение, вычитание, умножение и деление.
+# Если боту сказать “2-3=”, он должен ответить “-1”.
+# Все выражения для калькулятора должны заканчиваться знаком равно.
+# Дополнительно: не забудьте обработать возможные ошибки во вводе: пробелы, отсутствие чисел, деление на ноль.
 
 
-def compare_line(first, second):
-    if validate_line(first) and validate_line(second):
-        if first == second:
-            return 1
-        if second == "learn":
-            return 3
-        if len(first) > len(second):
-            return 2
-    else:
-        return 'Ошибка валидации строки!'
+from telegram.ext import Updater, CommandHandler
+import logging, re
 
 
-def validate_line(line):
-    """Эта функция проверяет что line это строка и она не равна None"""
-    if isinstance(line, str) and line != '':
+
+TOKEN = open('key_telegrambot', 'r').read()
+
+logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO,
+                    filename='bot.log'
+                    )
+
+
+def main():
+    updater = Updater(TOKEN)
+    dp = updater.dispatcher
+    dp.add_handler(CommandHandler('calc', calc))
+    updater.start_polling()
+    updater.idle()
+
+
+def calc(bot, update):
+    try:
+        expr = list(re.findall(r'(\d+)([+-/*])(\d+)(=)$', update.message.text)[0])
+    except:
+        return update.message.reply_text('выражение не совпадает с шаблоном "2-3="')
+    expr[0],expr[2] = int(expr[0]), int(expr[2])
+    # for example ["43242", "+", "4224", "="]
+    if validate_expr_zero(expr):
+        return update.message.reply_text('Деление на ноль')
+    if expr[1] == '+':
+        return update.message.reply_text(expr[0] + expr[2])
+    if expr[1] == '-':
+        return update.message.reply_text(expr[0] - expr[2])
+    if expr[1] == '*':
+        return update.message.reply_text(expr[0] * expr[2])
+    if expr[1] == '/':
+        return update.message.reply_text(expr[0] / expr[2])
+
+
+
+def validate_expr_zero(expr):
+    if expr[1] == '/' and expr[2] == '0':
         return True
 
-    return False
-
-
-print(compare_line('example', 'asdf'))
+main()
