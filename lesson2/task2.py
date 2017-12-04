@@ -16,7 +16,7 @@ NAME_FILE = 'data-397-2017-10-31.xlsx'
 def number_by_name(sheet, title):
     """return number colomn by name cell"""
     for row in range(len(sheet.row(0))):
-        if title == sheet.cell(0, w).value:
+        if title == sheet.cell(0, row).value:
             return row
 
 
@@ -33,6 +33,7 @@ for w in range(1, len(workbook.col(escalators))):
         continue
     name_station = workbook.cell(w, station)
     range_date = range_date.split('-')
+    print(range_date)
     datetime.strptime(range_date[0], '%d.%m.%Y')
     first_date, second_date = datetime.strptime(range_date[0], '%d.%m.%Y'), datetime.strptime(range_date[1], '%d.%m.%Y')
     if first_date <= datetime.now() <= second_date:
