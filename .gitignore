@@ -6,3 +6,4 @@ env/
 export.csv
 telegrambot_token
 *.csv
+*.xlsx
