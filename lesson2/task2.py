@@ -1,3 +1,4 @@
+
 # Автор Тютин Руслан
 # Метро
 # В этом задании требуется определить, на каких станциях московского метро
@@ -14,9 +15,10 @@ NAME_FILE = 'data-397-2017-10-31.xlsx'
 
 def number_by_name(sheet, title):
     """return number colomn by name cell"""
-    for w in range(len(sheet.row(0))):
+    for row in range(len(sheet.row(0))):
         if title == sheet.cell(0, w).value:
-            return w
+            return row
+
 
 open_workbook = xlrd.open_workbook(NAME_FILE)
 workbook = open_workbook.sheet_by_index(0)
