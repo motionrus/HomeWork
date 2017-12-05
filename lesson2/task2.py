@@ -33,7 +33,6 @@ for w in range(1, len(workbook.col(escalators))):
         continue
     name_station = workbook.cell(w, station)
     range_date = range_date.split('-')
-    print(range_date)
     datetime.strptime(range_date[0], '%d.%m.%Y')
     first_date, second_date = datetime.strptime(range_date[0], '%d.%m.%Y'), datetime.strptime(range_date[1], '%d.%m.%Y')
     if first_date <= datetime.now() <= second_date:
