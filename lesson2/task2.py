@@ -26,6 +26,7 @@ escalators = number_by_name(workbook, TITLE_ESCALATORS)
 station = number_by_name(workbook, TITLE_STATION)
 
 list_date = list()
+save_set = set()
 
 for w in range(1, len(workbook.col(escalators))):
     range_date = workbook.cell(w, escalators).value
@@ -36,4 +37,7 @@ for w in range(1, len(workbook.col(escalators))):
     datetime.strptime(range_date[0], '%d.%m.%Y')
     first_date, second_date = datetime.strptime(range_date[0], '%d.%m.%Y'), datetime.strptime(range_date[1], '%d.%m.%Y')
     if first_date <= datetime.now() <= second_date:
-        print('Эскалатор на станции "{}" не будет работать в период {}-{}.'.format(name_station.value, *range_date))
+        save_set.add('Эскалатор на станции "{}" не будет работать в период {}-{}.'.format(name_station.value, *range_date))
+
+for save in save_set:
+    print(save)
