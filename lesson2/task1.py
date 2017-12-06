@@ -6,11 +6,11 @@
 # вывести улицу, на которой больше всего остановок.
 from collections import Counter
 import csv
-
+NAME_FILE = ''
 
 list_stop_bus = list()
 list_street = list()
-with open('data-398-2017-12-01.csv', 'r', encoding='cp1251') as f:
+with open(NAME_FILE, 'r', encoding='cp1251') as f:
     reader = csv.DictReader(f, delimiter=";")
     for r in reader:
         list_stop_bus.append(r['StationName'])

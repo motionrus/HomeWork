@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+        <style type="text/css">
+            body,html {
+              margin: 0;
+              font-family: sans-serif;
+            }
+
+            ul {
+              padding: 0;
+              width: 100%;
+            }
+
+            li {
+              display: inline;
+            }
+
+            a {
+              outline: none;
+              text-decoration: none;
+              display: inline-block;
+              width: 19.5%;
+              margin-right: 0.625%;
+              text-align: center;
+              line-height: 3;
+              color: black;
+            }
+
+            li:last-child a {
+              margin-right: 0;
+            }
+
+            a:link, a:visited, a:focus {
+              background: #4CAF50;
+            }
+
+            a:hover {
+              background: lightgreen;
+            }
+
+            a:active {
+              background: lightseagreen;
+              color: white;
+            }
+        </style>
+</head>
+<body>
+    <h1>Выберите период:</h1>
+
+    {% for year in years %}
+        <p><a href="/names/{{year}}">{{year}} год</a></p>
+    {% endfor %}
+    <p><a href="/names/">За все время</a></p>
+</body>
+</html>
