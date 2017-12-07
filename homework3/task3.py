@@ -5,15 +5,15 @@
 # Ограничьте выводимые данные одним годом. Год должен указываться в URL как параметр, например /names?year=2016.
 
 
-from task1 import kinder_api
+from task1 import kinder_api, json_api
 from flask import Flask, render_template
 
-YEAR = [2015, 2016, 2017]
+YEAR = ['2015', '2016', '2017']
 app = Flask(__name__)
 
 
-@app.route("/names/<int:year>")
-@app.route("/names")
+@app.route("/names/")
+@app.route("/names/<year>")
 def names(year=None):
     if year not in YEAR:
         year = None
