@@ -36,5 +36,5 @@ def json_api(year=None):
 
 
 if __name__ == "__main__":
-    print(kinder_api(year=2017))
+    print(kinder_api(year='2017'))
 
